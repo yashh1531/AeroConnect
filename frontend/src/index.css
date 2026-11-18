@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  AERO CONNECT — dark neumorphic design tokens
+  Charcoal / graphite only. Status accents are muted and sparse.
+*/
+
+:root {
+  --bg-base: #1b1d1f;
+  --bg-surface: #212325;
+  --bg-raised: #26282a;
+  --bg-recessed: #16181a;
+  --bg-deep: #121415;
+
+  --border-subtle: rgba(255, 255, 255, 0.045);
+  --border-soft: rgba(0, 0, 0, 0.35);
+
+  --text-primary: #d2d4d6;
+  --text-secondary: #9a9ea3;
+  --text-muted: #6a6f75;
+  --text-faint: #52575c;
+
+  --success: #6d7a6f;
+  --success-soft: rgba(109, 122, 111, 0.22);
+  --warning: #8a7a5c;
+  --warning-soft: rgba(138, 122, 92, 0.22);
+  --danger: #7a5e5e;
+  --danger-soft: rgba(122, 94, 94, 0.22);
+
+  --shadow-dark: #121314;
+  --shadow-light: #2c2e31;
+
+  --neu-raised:
+    7px 7px 14px var(--shadow-dark),
+    -5px -5px 12px var(--shadow-light);
+  --neu-raised-sm:
+    4px 4px 8px var(--shadow-dark),
+    -3px -3px 7px var(--shadow-light);
+  --neu-inset:
+    inset 5px 5px 10px var(--shadow-dark),
+    inset -4px -4px 9px var(--shadow-light);
+  --neu-inset-sm:
+    inset 3px 3px 6px var(--shadow-dark),
+    inset -2px -2px 5px var(--shadow-light);
+  --neu-pressed:
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -3px -3px 7px var(--shadow-light);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  --sidebar-width: 232px;
+  --header-height: 72px;
+
+  color-scheme: dark;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  background: var(--bg-base);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2f3235;
+  border-radius: 8px;
+}
+
+@layer components {
+  .neu-raised {
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--neu-raised);
+  }
+
+  .neu-raised-sm {
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--neu-raised-sm);
+  }
+
+  .neu-recessed {
+    background: var(--bg-recessed);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--neu-inset);
+  }
+
+  .neu-recessed-sm {
+    background: var(--bg-recessed);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--neu-inset-sm);
+  }
+
+  .neu-panel {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--neu-raised);
+  }
+
+  .label-caps {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .metric-value {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .awaiting {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+  }
+}
+
+/* Leaflet dark integration */
+.leaflet-container {
+  background: #141618 !important;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  border-radius: inherit;
+}
+
+.leaflet-control-attribution {
+  background: rgba(18, 20, 21, 0.75) !important;
+  color: var(--text-faint) !important;
+  font-size: 9px !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--text-muted) !important;
+}
+
+.leaflet-control-zoom a {
+  background: var(--bg-raised) !important;
+  color: var(--text-secondary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--neu-raised-sm) !important;
+  width: 30px !important;
+  height: 30px !important;
+  line-height: 30px !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+}
+
+.ac-map-marker {
+  background: transparent;
+  border: none;
+}

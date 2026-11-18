@@ -1,0 +1,8 @@
+import { Panel } from "../ui/Panel";
+import type { AppState } from "../../types/state";
+
+export function NetworkChart({ state }: { state: AppState | null }) {
+  const history = state?.throughput_history ?? [];
+  const points = history.map((value, index) => `${36 + (index / Math.max(1, history.length - 1)) * 354},${160 - Math.min(145, value * 18)}`).join(" ");
+  return <Panel title="Network Performance" subtitle="Throughput · latency · loss" className="h-full"><div className="neu-recessed relative h-[220px] overflow-hidden px-2 py-3"><svg viewBox="0 0 400 180" className="h-full w-full" role="img" aria-label="Network throughput history">{[30,60,90,120,150].map(y => <line key={y} x1="36" x2="390" y1={y} y2={y} stroke="#2a2c2e" strokeWidth="1" />)}<line x1="36" y1="12" x2="36" y2="160" stroke="#3a3d40" /><line x1="36" y1="160" x2="390" y2="160" stroke="#3a3d40" />{points ? <polyline points={points} fill="none" stroke="#8a7a5c" strokeWidth="2" /> : null}</svg>{!state ? <div className="pointer-events-none absolute inset-0 flex items-center justify-center"><span className="label-caps tracking-[0.16em] text-[var(--text-faint)]">Awaiting simulation series</span></div> : null}</div><div className="mt-3 grid grid-cols-3 gap-2">{[["Throughput", state ? `${state.network.throughput.toFixed(1)} Mbps` : "—"], ["Latency", state ? `${state.network.latency.toFixed(0)} ms` : "—"], ["Packet loss", state ? `${state.network.packet_loss.toFixed(1)}%` : "—"]].map(([label, value]) => <div key={label} className="neu-raised-sm px-2.5 py-2 text-center"><p className="label-caps">{label}</p><p className="metric-value mt-1 text-[0.8rem]">{value}</p></div>)}</div></Panel>;
+}
